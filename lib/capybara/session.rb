@@ -161,6 +161,7 @@ module Capybara
     # @param [String] url     The URL to navigate to
     #
     def visit(url)
+      url = url.to_s
       @touched = true
 
       if url !~ /^http/ and Capybara.app_host

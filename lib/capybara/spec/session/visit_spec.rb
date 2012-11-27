@@ -86,4 +86,13 @@ Capybara::SpecHelper.spec '#visit' do
     @session.find('//input').click
     @session.body.should match %r{http://.*/referer_base}
   end
+
+  it "should convert the path to a string" do
+    klass = Class.new do
+      def to_s() '/' end
+    end
+    path = klass.new
+    @session.visit(path)
+    @session.should have_content('Hello world!')
+  end
 end
